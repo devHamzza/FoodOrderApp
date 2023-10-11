@@ -5,8 +5,8 @@ import CartBtn from './CartBtn'
 const Header = (props) => {
   return (
     <Fragment>
-        <header className={classes.header}>
-            <h1>GetMeal</h1>
+        <header className='flex text-[#2a2829] bg-white justify-between px-10 py-4 items-center'>
+            <h1 className='text-4xl font-bold'>Eco<span className='text-[#6f9639]'>Food</span></h1>
             <CartBtn onClick={props.onClick}/>
         </header>
         <div className={classes["main-image"]}>
