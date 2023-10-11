@@ -22,3 +22,8 @@
       transform: translateY(0);
     }
   }
+
+  .loading {
+    color: #d25b00;
+    text-align: center;
+  }

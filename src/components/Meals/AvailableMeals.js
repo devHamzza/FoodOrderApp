@@ -1,37 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./AvailableMeals.module.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 
-const DUMMY_MEALS = [
-  {
-    id: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 22.99,
-  },
-  {
-    id: "m2",
-    name: "Schnitzel",
-    description: "A german specialty!",
-    price: 16.5,
-  },
-  {
-    id: "m3",
-    name: "Barbecue Burger",
-    description: "American, raw, meaty",
-    price: 12.99,
-  },
-  {
-    id: "m4",
-    name: "Green Bowl",
-    description: "Healthy...and green...",
-    price: 18.99,
-  },
-];
-
 const AvailableMeals = () => {
-  const mealsList = DUMMY_MEALS.map((meal) => (
+  const [ourMeals, setOurMeals] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+
+  useEffect(() => {
+    setisLoading(true);
+    fetch(
+      "https://react-fetch-api-7d08a-default-rtdb.firebaseio.com/meals.json"
+    )
+      .then((response) => response.json())
+      .then((mealsData) => {
+        setOurMeals(mealsData);
+        setisLoading(false);
+      });
+  }, []);
+
+  console.log(ourMeals);
+
+  const mealsList = ourMeals.map((meal) => (
     <MealItem
       key={meal.id}
       id={meal.id}
@@ -43,7 +33,8 @@ const AvailableMeals = () => {
   return (
     <section className={classes.meals}>
       <Card>
-        <ul>{mealsList}</ul>
+        {isLoading && <p className={classes.loading}>Loading...</p>}
+        {!isLoading && <ul>{mealsList}</ul>}
       </Card>
     </section>
   );
