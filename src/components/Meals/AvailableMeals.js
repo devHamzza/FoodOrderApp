@@ -6,22 +6,31 @@ import MealItem from "./MealItem/MealItem";
 const AvailableMeals = () => {
   const [ourMeals, setOurMeals] = useState([]);
   const [isLoading, setisLoading] = useState(false);
+  const [isError, setIsError] = useState();
 
   useEffect(() => {
     setisLoading(true);
-    fetch(
-      "https://react-fetch-api-7d08a-default-rtdb.firebaseio.com/meals.json"
-    )
-      .then((response) => response.json())
-      .then((mealsData) => {
+    async function fetchData() {
+      try {
+        const response = await fetch("https://react-fetch-api-7d08a-default-rtdb.firebaseio.com/meals.json");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const mealsData = await response.json();
         setOurMeals(mealsData);
         setisLoading(false);
-      });
+      } catch (error) {
+        setIsError(error.message);
+      }
+    }
+    
+    fetchData();
+    
   }, []);
 
   // console.log(ourMeals);
 
-  const mealsList = ourMeals.map((meal) => (
+   const mealsList = ourMeals.map((meal) => (
     <MealItem
       key={meal.id}
       id={meal.id}
@@ -33,7 +42,8 @@ const AvailableMeals = () => {
   return (
     <section className={classes.meals}>
       <Card>
-        {isLoading && <p className={classes.loading}>Loading...</p>}
+        {isLoading && !isError && <p className={classes.loading}>Loading...</p>}
+        {isError && <p className={classes.loading}>{isError}</p>}
         {!isLoading && <ul>{mealsList}</ul>}
       </Card>
     </section>
