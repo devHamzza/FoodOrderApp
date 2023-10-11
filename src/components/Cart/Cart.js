@@ -15,6 +15,8 @@ const Cart = (props) => {
     cartCtx.removeItem(id);
   };
 
+  console.log(cartCtx.cartItems);
+
   const cartItems = (
     <ul className={classes["cart-items"]}>
       {cartCtx.cartItems.map((item) => (

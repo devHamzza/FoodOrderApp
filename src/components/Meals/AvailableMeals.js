@@ -19,7 +19,7 @@ const AvailableMeals = () => {
       });
   }, []);
 
-  console.log(ourMeals);
+  // console.log(ourMeals);
 
   const mealsList = ourMeals.map((meal) => (
     <MealItem
