@@ -1,22 +1,39 @@
 .meal {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .meal h3 {
-    margin: 0 0 0.25rem 0;
-  }
-  
-  .description {
-    font-style: italic;
-  }
-  
-  .price {
-    margin-top: 0.25rem;
-    font-weight: bold;
-    color: #ad5502;
-    font-size: 1.25rem;
-  }
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.mealImg {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.meal img {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+  border-radius: 14px;
+}
+
+.itemText {
+  display: flex;
+  justify-content: space-between;
+}
+
+.meal h3 {
+  margin: 0 0 0.25rem 0;
+}
+
+.description {
+  margin-top: 0;
+  width: 80%;
+  font-style: italic;
+}
+
+.price {
+  margin-top: 0.25rem;
+  font-weight: bold;
+  color: #15655c;
+  font-size: 1.25rem;
+}

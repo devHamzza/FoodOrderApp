@@ -1,11 +1,17 @@
 .meals {
-    max-width: 60rem;
-    width: 90%;
-    margin: 2rem auto;
-    animation: meals-appear 1s ease-out forwards;
+  display: flex;
+  margin: 2rem auto;
+  animation: meals-appear 1s ease-out forwards;
+  margin-top: 10rem;
+  margin-inline: 2rem;
   }
   
-  .meals ul {
+  .mealsFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -24,6 +30,6 @@
   }
 
   .loading {
-    color: #d25b00;
+    color: #186F65;
     text-align: center;
   }
